@@ -1,0 +1,28 @@
+:host::ng-deep {
+	.p-panelmenu-header-content {
+		border: none;
+		border-radius: 0;
+	}
+
+	.p-panelmenu-header-action {
+		position: relative;
+		display: flex;
+		align-items: center;
+		outline: 0 none;
+		color: var(--text-color);
+		cursor: pointer;
+		padding: 1rem;
+		transition:
+			background-color var(--transition-duration),
+			box-shadow var(--transition-duration);
+
+		&.p-menuitem-link-active {
+			color: var(--primary-color);
+		}
+	}
+
+	.p-menuitem-icon {
+		margin-right: 0.5rem;
+		color: var(--primary-color);
+	}
+}

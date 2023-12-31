@@ -1,0 +1,31 @@
+:host {
+	display: block;
+	min-height: 100vh;
+}
+
+.layout-container {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	padding: 2rem;
+	margin-left: 18rem;
+	transition: margin-left var(--transition-duration);
+}
+
+.layout-sidebar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	width: 18rem;
+	background: var(--surface-overlay);
+	border-right: 1px solid var(--surface-border);
+}
+
+.layout-main {
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+}

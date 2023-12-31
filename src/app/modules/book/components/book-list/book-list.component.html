@@ -1,0 +1,123 @@
+<p-table [value]="_books">
+	<ng-template pTemplate="header">
+		<tr>
+			<th>#</th>
+			<th>Назва</th>
+			<th class="text-center">Країна</th>
+			<th>Автор</th>
+			<th>Тривалість</th>
+			<th>Оцінка</th>
+			<th></th>
+		</tr>
+	</ng-template>
+
+	<ng-template pTemplate="body" let-pBook>
+		@if (getType(pBook); as book) {
+			<tr>
+				<td>
+					<span class="p-column-title">#</span>
+					{{ book.id }}
+				</td>
+				<td>
+					<span class="p-column-title">Назва</span>
+					<span class="book-name">
+						{{ book.name }}
+
+						<book-type-mark class="book-name-mark" [type]="book.type"></book-type-mark>
+					</span>
+				</td>
+				<td class="text-center">
+					<span class="p-column-title">Країна</span>
+
+					@if (book.country) {
+						<country-flag [country]="book.country"></country-flag>
+					} @else {
+						-
+					}
+				</td>
+				<td>
+					<span class="p-column-title">Автор</span>
+
+					{{ book.authors[0] }}
+
+					@if (book.authors.length > 1) {
+						та інші
+					}
+				</td>
+				<td>
+					<span class="p-column-title">Тривалість</span>
+
+					@if (book.userExtra && book.userExtra.progress; as progress) {
+						<span [pTooltip]="dateDiffTooltip" tooltipStyleClass="no-wrap" tooltipPosition="top">
+							{{ progress.startDate | dateDiff: progress.endDate }}
+						</span>
+
+						<ng-template #dateDiffTooltip>
+							{{ progress.startDate | dateFormat }}
+
+							@if (progress.endDate) {
+								-
+								{{ progress.endDate | dateFormat }}
+							}
+						</ng-template>
+					} @else {
+						-
+					}
+				</td>
+				<td>
+					<span class="p-column-title">Оцінка</span>
+
+					@if (book.userExtra && book.userExtra.rating) {
+						<p-rating [ngModel]="book.userExtra.rating" [readonly]="true" [cancel]="false"></p-rating>
+					} @else {
+						-
+					}
+				</td>
+
+				<td>
+					<p-menu #menu appendTo="body" [model]="actions" [popup]="true">
+						<ng-template pTemplate="item" let-item>
+							@switch (item.id) {
+								@case ('view') {
+									<a
+										[attr.tabindex]="-1"
+										class="p-menuitem-link"
+										[routerLink]="BookRoute.View(book.id)"
+									>
+										<div class="flex align-items-center">
+											<i class="ri-book-line ri-lg mr-2"></i>
+											Перегляд
+										</div>
+									</a>
+								}
+								@case ('edit') {
+									<a [attr.tabindex]="-1" class="p-menuitem-link" (click)="onEditClick(book)">
+										<div class="flex align-items-center">
+											<i class="ri-pencil-line ri-lg mr-2"></i>
+											Редагувати
+										</div>
+									</a>
+								}
+								@case ('delete') {
+									<a [attr.tabindex]="-1" class="p-menuitem-link" (click)="onDeleteClick(book)">
+										<div class="flex align-items-center">
+											<i class="ri-delete-bin-line ri-lg mr-2"></i>
+											Видалити
+										</div>
+									</a>
+								}
+							}
+						</ng-template>
+					</p-menu>
+
+					<p-button
+						icon="ri-more-2-line ri-xl"
+						[rounded]="true"
+						[text]="true"
+						(click)="menu.toggle($event)"
+					></p-button>
+				</td>
+			</tr>
+		}
+	</ng-template>
+</p-table>

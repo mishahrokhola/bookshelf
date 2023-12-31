@@ -1,0 +1,45 @@
+:host {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 2rem;
+
+	> * {
+		width: 100%;
+	}
+
+	::ng-deep {
+		.p-toolbar {
+			border: none;
+			border-radius: 0;
+			padding: 0;
+			background: transparent;
+		}
+	}
+}
+
+.menu {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 2rem;
+	border-radius: 50%;
+	width: 2.5rem;
+	height: 2.5rem;
+	flex-shrink: 0;
+	transition: background-color var(--transition-duration);
+
+	i {
+		font-size: 1.5rem;
+		color: var(--text-color);
+		transition: color var(--transition-duration);
+	}
+
+	&:hover {
+		background-color: var(--primary-color);
+
+		i {
+			color: var(--primary-color-text);
+		}
+	}
+}

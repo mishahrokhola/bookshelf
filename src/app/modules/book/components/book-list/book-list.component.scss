@@ -1,0 +1,22 @@
+:host {
+	display: block;
+	position: relative;
+}
+
+.book-name {
+	position: relative;
+	padding-right: 1.5rem;
+}
+
+.book-name-mark {
+	position: absolute;
+	top: -5px;
+	right: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 1.4rem;
+	height: 1.4rem;
+	transform: rotate(-34deg);
+	color: var(--primary-color);
+}

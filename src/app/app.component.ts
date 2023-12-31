@@ -1,14 +1,13 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { LayoutComponent } from './modules/layout/components/layout/layout.component';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+	standalone: true,
+	selector: 'root',
+	imports: [LayoutComponent],
+	template: `
+		<layout></layout>
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {
-  title = 'bookshelf';
-}
+export class AppComponent {}
