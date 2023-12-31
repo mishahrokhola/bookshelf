@@ -3,6 +3,10 @@
 	position: relative;
 }
 
+.no-margin::ng-deep svg {
+	margin-left: 0;
+}
+
 .book-name {
 	position: relative;
 	padding-right: 1.5rem;

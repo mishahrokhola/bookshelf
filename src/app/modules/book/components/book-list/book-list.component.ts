@@ -4,9 +4,12 @@ import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
 import { MenuModule } from 'primeng/menu';
 import { ButtonModule } from 'primeng/button';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, SortEvent } from 'primeng/api';
+
+import { BookSortService } from '../../services/book-sort/book-sort.service';
 
 import { CountryFlagComponent } from '@shared/modules/country/components/country-flag/country-flag.component';
+import { BookAvatarComponent } from '../book-avatar/book-avatar.component';
 import { BookTypeMarkComponent } from '../book-type-mark/book-type-mark.component';
 
 import { DateDiffPipe } from '@shared/modules/date/pipes/date-diff.pipe';
@@ -29,6 +32,7 @@ import { books } from '../../../../data/books.data';
 		MenuModule,
 		ButtonModule,
 		CountryFlagComponent,
+		BookAvatarComponent,
 		BookTypeMarkComponent,
 		DateDiffPipe,
 		DateFormatPipe,
@@ -43,6 +47,8 @@ export class BookListComponent {
 
 	public readonly actions: MenuItem[] = [{ id: 'view' }, { id: 'edit' }, { id: 'delete' }];
 
+	constructor(private bookSortService: BookSortService) {}
+
 	public onEditClick(book: Book): void {
 		console.log(book);
 	}
@@ -53,5 +59,9 @@ export class BookListComponent {
 
 	public getType(book: unknown): Book {
 		return book as Book;
+	}
+
+	public customSort(event: SortEvent): void {
+		return this.bookSortService.sort(event);
 	}
 }

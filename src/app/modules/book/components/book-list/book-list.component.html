@@ -1,12 +1,35 @@
-<p-table [value]="_books">
+<p-table [value]="_books" (sortFunction)="customSort($event)" [customSort]="true">
 	<ng-template pTemplate="header">
 		<tr>
-			<th>#</th>
-			<th>Назва</th>
-			<th class="text-center">Країна</th>
-			<th>Автор</th>
-			<th>Тривалість</th>
-			<th>Оцінка</th>
+			<th pSortableColumn="id" style="width: 50px">
+				<p-sortIcon class="no-margin" field="id"></p-sortIcon>
+			</th>
+
+			<th pSortableColumn="name">
+				Назва
+				<p-sortIcon field="name"></p-sortIcon>
+			</th>
+
+			<th pSortableColumn="country" style="width: 150px" class="text-center">
+				Країна
+				<p-sortIcon field="country"></p-sortIcon>
+			</th>
+
+			<th pSortableColumn="author">
+				Автор
+				<p-sortIcon field="author"></p-sortIcon>
+			</th>
+
+			<th pSortableColumn="date" style="width: 200px">
+				Тривалість
+				<p-sortIcon field="date"></p-sortIcon>
+			</th>
+
+			<th pSortableColumn="rating" style="width: 150px">
+				Оцінка
+				<p-sortIcon field="rating"></p-sortIcon>
+			</th>
+
 			<th></th>
 		</tr>
 	</ng-template>
@@ -20,11 +43,16 @@
 				</td>
 				<td>
 					<span class="p-column-title">Назва</span>
-					<span class="book-name">
-						{{ book.name }}
 
-						<book-type-mark class="book-name-mark" [type]="book.type"></book-type-mark>
-					</span>
+					<div class="flex align-items-center">
+						<book-avatar [book]="book"></book-avatar>
+
+						<span class="book-name ml-4">
+							{{ book.name }}
+
+							<book-type-mark class="book-name-mark" [type]="book.type"></book-type-mark>
+						</span>
+					</div>
 				</td>
 				<td class="text-center">
 					<span class="p-column-title">Країна</span>
